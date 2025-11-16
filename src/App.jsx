@@ -7,6 +7,7 @@ import Tickets from './pages/Tickets'
 import Creators from './pages/Creators'
 import About from './pages/About'
 import Gallery from './pages/Gallery'
+import Admin from './pages/Admin'
 import { Routes, Route } from 'react-router-dom'
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/creators" element={<Creators />} />
         <Route path="/about" element={<About />} />
         <Route path="/gallery" element={<Gallery />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
       <Footer />
     </div>

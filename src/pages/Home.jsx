@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Hero from '../components/Hero'
 import Highlights from '../components/Highlights'
 import Countdown from '../components/Countdown'
+import Marquee from '../components/Marquee'
 
 export default function Home() {
   const [eventInfo, setEventInfo] = useState(null)
@@ -24,6 +25,7 @@ export default function Home() {
   return (
     <main className="bg-black text-white">
       <Hero />
+      <Marquee text={(eventInfo?.name || 'BLAZINVIBE') + ' • ' + (eventInfo?.venue || 'NEON DOCKS') + ' • '} />
       <section className="py-16 bg-gradient-to-b from-black/80 to-[#0a0014]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl sm:text-4xl font-extrabold">Countdown to Blast Off</h2>

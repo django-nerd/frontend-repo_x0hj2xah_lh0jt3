@@ -23,14 +23,18 @@ export default function Lineup() {
           <h1 className="text-3xl sm:text-5xl font-extrabold">Line-Up</h1>
           <div className="flex gap-2">
             {roles.map(r => (
-              <button key={r} onClick={() => setRole(r)} className={`px-4 py-2 rounded-full border ${role===r? 'bg-white/15 border-white/30' : 'border-white/10 hover:bg-white/5'} transition`}>{r}</button>
+              <button key={r} onClick={() => setRole(r)} className={`px-4 py-2 rounded-full border ${role===r? 'bg-white/15 border-white/30' : 'border-white/10 hover:bg-white/5'} transition`}>
+                {r}
+              </button>
             ))}
           </div>
         </div>
         <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {artists.map(a => (
-            <article key={a.id} className="group rounded-2xl overflow-hidden border border-white/10 bg-white/5 hover:bg-white/10 transition">
-              <div className="aspect-[4/3] bg-gradient-to-br from-fuchsia-500/20 to-cyan-500/20" aria-hidden />
+          {artists.map((a, idx) => (
+            <article key={a.id} className="group rounded-2xl overflow-hidden border border-white/10 bg-white/5 hover:bg-white/10 transition will-change-transform" style={{
+              transform: `translateY(${(idx % 3) * 2}px)`
+            }}>
+              <div className="aspect-[4/3] bg-gradient-to-br from-fuchsia-500/20 to-cyan-500/20 group-hover:scale-[1.03] transition-transform duration-300" aria-hidden />
               <div className="p-5">
                 <h3 className="text-xl font-bold">{a.name}</h3>
                 <p className="text-pink-300 text-sm font-semibold">{a.role}</p>
