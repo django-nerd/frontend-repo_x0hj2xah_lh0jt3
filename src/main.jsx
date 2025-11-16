@@ -9,7 +9,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} />
+        {/* Mount App for all app routes so its internal routing works */}
+        <Route path="/*" element={<App />} />
+        {/* Standalone test route */}
         <Route path="/test" element={<Test />} />
       </Routes>
     </BrowserRouter>

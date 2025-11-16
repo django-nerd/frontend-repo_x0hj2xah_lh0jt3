@@ -3,18 +3,23 @@ import { useEffect, useState } from 'react'
 export default function Tickets() {
   const [tiers, setTiers] = useState([])
   const [faqs, setFaqs] = useState([])
+  const [eventInfo, setEventInfo] = useState(null)
 
   useEffect(() => {
     (async () => {
-      const url = import.meta.env.VITE_BACKEND_URL || ''
-      const [t1, t2] = await Promise.all([
-        fetch(`${url}/api/tickets`).then(r=>r.json()),
-        fetch(`${url}/api/faqs`).then(r=>r.json())
+      const base = import.meta.env.VITE_BACKEND_URL || ''
+      const [t1, t2, ev] = await Promise.all([
+        fetch(`${base}/api/tickets`).then(r=>r.json()).catch(()=>[]),
+        fetch(`${base}/api/faqs`).then(r=>r.json()).catch(()=>[]),
+        fetch(`${base}/api/eventinfo`).then(r=>r.json()).catch(()=>null)
       ])
-      setTiers(t1)
-      setFaqs(t2)
+      setTiers(Array.isArray(t1) ? t1 : [])
+      setFaqs(Array.isArray(t2) ? t2 : [])
+      if (ev && Object.keys(ev).length > 0) setEventInfo(ev)
     })()
   }, [])
+
+  const buyHref = (eventInfo && eventInfo.ticket_url) ? eventInfo.ticket_url : '#'
 
   return (
     <main className="bg-black min-h-screen text-white pt-20">
@@ -25,11 +30,16 @@ export default function Tickets() {
           {tiers.map(t => (
             <div key={t.id} className="rounded-2xl border border-white/10 bg-white/5 p-6">
               <h3 className="text-xl font-bold">{t.name}</h3>
-              <p className="text-white/70 text-sm">{t.currency} {t.price.toFixed(2)}</p>
+              <p className="text-white/70 text-sm">{t.currency} {Number(t.price).toFixed(2)}</p>
               <ul className="mt-3 text-sm text-white/80 list-disc list-inside space-y-1">
                 {t.includes?.map((i, idx) => <li key={idx}>{i}</li>)}
               </ul>
-              <a target="_blank" rel="noreferrer" href="#" className="mt-4 inline-flex justify-center w-full px-4 py-2 rounded-xl bg-gradient-to-r from-fuchsia-500 to-blue-500 text-white font-semibold">Buy Now</a>
+              <a target="_blank" rel="noreferrer" href={buyHref} aria-label={`Buy ${t.name} ticket`}
+                 className="mt-4 inline-flex justify-center w-full px-4 py-2 rounded-xl bg-gradient-to-r from-fuchsia-500 to-blue-500 text-white font-semibold disabled:opacity-60 disabled:cursor-not-allowed"
+                 {...(!eventInfo?.ticket_url ? { 'aria-disabled': true } : {})}
+              >
+                {eventInfo?.ticket_url ? 'Buy Now' : 'Tickets Coming Soon'}
+              </a>
             </div>
           ))}
         </div>

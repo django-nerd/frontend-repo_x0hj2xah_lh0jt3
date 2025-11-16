@@ -3,13 +3,64 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Flames App</title>
-    <link rel="icon" type="image/x-icon" href="favicon.svg">
+    <title>BlazinVibe — Immersive Music + Art Experience</title>
+    <meta name="description" content="BlazinVibe fuses music, visual art, and community into an immersive night of sound and light. Line-up, tickets, creator applications, and gallery." />
+    <meta name="theme-color" content="#0b0015" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="BlazinVibe — Immersive Music + Art Experience" />
+    <meta property="og:description" content="Feel the Beat. Live the Vibe. Explore the line-up, experiences, tickets, and apply as a creator." />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80&auto=format&fit=crop" />
+    <meta property="og:image:alt" content="Crowd and stage lights at an electronic music festival" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="BlazinVibe — Immersive Music + Art Experience" />
+    <meta name="twitter:description" content="Music, art, community. Tickets, creators, gallery, and more." />
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1518972559570-7cc1309f3229?w=1200&q=80&auto=format&fit=crop" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.0.0/dist/fonts/geist-sans/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist@1.0.0/dist/fonts/geist-mono/style.css">
+
+    <!-- Structured Data: Event Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MusicEvent",
+      "name": "BlazinVibe",
+      "startDate": "2025-08-23T18:00:00Z",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "location": {
+        "@type": "Place",
+        "name": "Neon Docks",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Pier 7, Riverfront",
+          "addressLocality": "Riverfront City",
+          "addressRegion": "",
+          "postalCode": "",
+          "addressCountry": "US"
+        }
+      },
+      "image": [
+        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80&auto=format&fit=crop"
+      ],
+      "description": "Immersive music + art experience. Headliners, interactive installations, and creator playground.",
+      "offers": {
+        "@type": "Offer",
+        "url": "https://tickets.example.com/blazinvibe",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "validFrom": "2025-05-01T12:00:00Z"
+      }
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
